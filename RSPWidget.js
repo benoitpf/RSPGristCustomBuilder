@@ -7,8 +7,9 @@ grist.onRecord(record => {
 
   console.info("###############");
   console.info(record);
+  console.info(record.nom);
   
-  let nomIssuDeLaTable = record.nom;
+  nomIssuDeLaTable = record.nom;
   
   labelDansLeWidget.textContent = nomIssuDeLaTable;
 

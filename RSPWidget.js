@@ -4,7 +4,11 @@ const labelDansLeWidget = document.querySelector("#nom");
 let nomIssuDeLaTable = ""
 
 grist.onRecord(record => {
+
+  console.info(record);
+  
   nomIssuDeLaTable = record.nom;
+  
   labelDansLeWidget.textContent = nomIssuDeLaTable;
 
   let url = "https://apim-passerelle-klifbb-otl.omogen.in.cloe.education.gouv.fr/mesirh/dev/rsp/mes-qua-d1/api/externe/unite_structurelle_complet?identUs=";

@@ -5,6 +5,7 @@ let nomIssuDeLaTable = ""
 
 grist.onRecord(record => {
 
+  console.info("###############");
   console.info(record);
   
   let nomIssuDeLaTable = record.nom;

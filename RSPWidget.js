@@ -6,42 +6,43 @@ document.addEventListener('DOMContentLoaded', function() {
   if (!labelDansLeWidget) {
     console.error("Élément avec l'ID 'nom' introuvable !");
     return;
-}
-let nomIssuDeLaTable = ""
-
-grist.onRecord(record => {
-
-  console.info("###############");
-  console.info(record);
-  console.info(record.nom);
+  }
+  let nomIssuDeLaTable = ""
   
-  nomIssuDeLaTable = record.nom;
+  grist.onRecord(record => {
   
-  labelDansLeWidget.textContent = nomIssuDeLaTable;
+    console.info("###############");
+    console.info(record);
+    console.info(record.nom);
+    
+    nomIssuDeLaTable = record.nom;
+    
+    labelDansLeWidget.textContent = nomIssuDeLaTable;
+  
+    let url = "https://apim-passerelle-klifbb-otl.omogen.in.cloe.education.gouv.fr/mesirh/dev/rsp/mes-qua-d1/api/externe/unite_structurelle_complet?identUs=";
+    url += record.nom;
+  
+  
+    fetch(url).then((response) => {
+      if (response.ok) {
+        response.json().then((data) => {
+                const results = data
+                if (!results) {
+                  console.info("pas de data");
+                }
+                else{
+                  document.getElementById('result').innerText = JSON.stringify(data);
+                }
+        })
+                
+      }
+      else {}
+  
+    })
+  
+  });
 
-  let url = "https://apim-passerelle-klifbb-otl.omogen.in.cloe.education.gouv.fr/mesirh/dev/rsp/mes-qua-d1/api/externe/unite_structurelle_complet?identUs=";
-  url += record.nom;
-
-
-  fetch(url).then((response) => {
-    if (response.ok) {
-      response.json().then((data) => {
-              const results = data
-              if (!results) {
-                console.info("pas de data");
-              }
-              else{
-                document.getElementById('result').innerText = JSON.stringify(data);
-              }
-      })
-              
-    }
-    else {}
-
-  })
-
-});
-
-grist.onRecords(table => {
-  // Code qui sera executé lorsque les données dans la table ont changé.
+  grist.onRecords(table => {
+    // Code qui sera executé lorsque les données dans la table ont changé.
+  });
 });

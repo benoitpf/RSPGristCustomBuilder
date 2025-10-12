@@ -1,23 +1,28 @@
 function formatDataForJsTree(node) {
   if (Array.isArray(node)) {
     return node.map((item, index) => ({
-      text: `[${index}]`,
-      children: formatDataForJsTree(item)
+      text: `[${index}]: ${JSON.stringify(item)}`,
+      children: typeof item === "object" && item !== null ? formatDataForJsTree(item) : false
     }));
   } else if (typeof node === "object" && node !== null) {
     const result = [];
     for (const key in node) {
       const value = node[key];
-      const children = formatDataForJsTree(value);
-      result.push({
-        text: key,
-        children: children.length > 0 ? children : false
-      });
+      if (typeof value !== "object" || value === null) {
+        result.push({
+          text: `${key}: ${value}`,
+          children: false
+        });
+      } else {
+        result.push({
+          text: key,
+          children: formatDataForJsTree(value)
+        });
+      }
     }
     return result;
-  } else {
-    return { text: String(node) };
   }
+  return String(node);
 }
 
 function displayAsTreeWithJsTree(data, containerId) {

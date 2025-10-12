@@ -1,3 +1,48 @@
+function buildTree(node, parentElement) {
+  if (typeof node === "object" && node !== null) {
+    for (const key in node) {
+      const li = document.createElement("li");
+      const value = node[key];
+      li.textContent = key;
+      parentElement.appendChild(li);
+      if (typeof value === "object" && value !== null) {
+        const ul = document.createElement("ul");
+        li.appendChild(ul);
+        buildTree(value, ul);
+      } else {
+        const span = document.createElement("span");
+        span.textContent = `: ${value}`;
+        li.appendChild(span);
+      }
+    }
+  } else if (Array.isArray(node)) {
+    node.forEach((item, index) => {
+      const li = document.createElement("li");
+      li.textContent = `[${index}]`;
+      parentElement.appendChild(li);
+      if (typeof item === "object" && item !== null) {
+        const ul = document.createElement("ul");
+        li.appendChild(ul);
+        buildTree(item, ul);
+      } else {
+        const span = document.createElement("span");
+        span.textContent = `: ${item}`;
+        li.appendChild(span);
+      }
+    });
+  }
+}
+
+function displayAsTree(data, containerId) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  container.innerHTML = "";
+  const ul = document.createElement("ul");
+  buildTree(data, ul);
+  container.appendChild(ul);
+}
+
+
 function formatDataForJsTree(node) {
   if (Array.isArray(node)) {
     return node.map((item, index) => ({
@@ -74,7 +119,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 else{
                   //document.getElementById('result').innerText = JSON.stringify(data);
-                  displayAsTreeWithJsTree(data, "result");
+                  //displayAsTreeWithJsTree(data, "result");
+                  displayAsTree(data,"result");
                 }
         })
                 

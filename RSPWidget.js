@@ -1,6 +1,12 @@
 grist.ready({ requiredAccess: 'full' });
 
-const labelDansLeWidget = document.querySelector("#nom");
+// Attends que le DOM soit chargé
+document.addEventListener('DOMContentLoaded', function() {
+  const labelDansLeWidget = document.querySelector("#nom");
+  if (!labelDansLeWidget) {
+    console.error("Élément avec l'ID 'nom' introuvable !");
+    return;
+}
 let nomIssuDeLaTable = ""
 
 grist.onRecord(record => {

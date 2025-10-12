@@ -1,3 +1,25 @@
+function formatDataForJsTree(node) {
+  if (Array.isArray(node)) {
+    return node.map((item, index) => ({
+      text: `[${index}]`,
+      children: formatDataForJsTree(item)
+    }));
+  } else if (typeof node === "object" && node !== null) {
+    const result = [];
+    for (const key in node) {
+      const value = node[key];
+      const children = formatDataForJsTree(value);
+      result.push({
+        text: key,
+        children: children.length > 0 ? children : false
+      });
+    }
+    return result;
+  } else {
+    return { text: String(node) };
+  }
+}
+
 function displayAsTreeWithJsTree(data, containerId) {
   const container = document.getElementById(containerId);
   if (!container) {
@@ -7,22 +29,10 @@ function displayAsTreeWithJsTree(data, containerId) {
   container.innerHTML = `<div id="jstree"></div>`;
   $("#jstree").jstree({
     core: {
-      data: formatDataForJsTree(data)
+      data: formatDataForJsTree(data),
+      check_callback: true
     }
   });
-}
-
-function formatDataForJsTree(node) {
-  if (typeof node !== "object" || node === null) {
-    return { text: String(node) };
-  }
-  const result = [];
-  for (const key in node) {
-    const child = formatDataForJsTree(node[key]);
-    child.text = key;
-    result.push(child);
-  }
-  return result;
 }
 
 grist.ready({ requiredAccess: 'full' });

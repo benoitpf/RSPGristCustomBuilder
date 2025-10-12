@@ -1,3 +1,30 @@
+function displayAsTreeWithJsTree(data, containerId) {
+  const container = document.getElementById(containerId);
+  if (!container) {
+    console.error(`Élément avec l'ID '${containerId}' introuvable !`);
+    return;
+  }
+  container.innerHTML = `<div id="jstree"></div>`;
+  $("#jstree").jstree({
+    core: {
+      data: formatDataForJsTree(data)
+    }
+  });
+}
+
+function formatDataForJsTree(node) {
+  if (typeof node !== "object" || node === null) {
+    return { text: String(node) };
+  }
+  const result = [];
+  for (const key in node) {
+    const child = formatDataForJsTree(node[key]);
+    child.text = key;
+    result.push(child);
+  }
+  return result;
+}
+
 grist.ready({ requiredAccess: 'full' });
 
 // Attends que le DOM soit chargé
@@ -31,7 +58,8 @@ document.addEventListener('DOMContentLoaded', function() {
                   console.info("pas de data");
                 }
                 else{
-                  document.getElementById('result').innerText = JSON.stringify(data);
+                  //document.getElementById('result').innerText = JSON.stringify(data);
+                  displayAsTreeWithJsTree(data, "result");
                 }
         })
                 

@@ -10,7 +10,7 @@ grist.onRecord(record => {
   
   let nomIssuDeLaTable = record.nom;
   
-  let labelDansLeWidget.textContent = nomIssuDeLaTable;
+  labelDansLeWidget.textContent = nomIssuDeLaTable;
 
   let url = "https://apim-passerelle-klifbb-otl.omogen.in.cloe.education.gouv.fr/mesirh/dev/rsp/mes-qua-d1/api/externe/unite_structurelle_complet?identUs=";
   url += record.nom;

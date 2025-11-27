@@ -9,9 +9,12 @@
 <body>
 <div id="gantt-chart"></div>
 <script>
-    grist.ready();
+    grist.ready({ requiredAccess: 'full' });
+
     grist.onRecord(function(record) {
         var data = JSON.parse(record.data);
+
+        console.log(data);
 
         // Define the dimensions of the chart
         var margin = {top: 20, right: 20, bottom: 20, left: 40},

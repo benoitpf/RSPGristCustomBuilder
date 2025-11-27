@@ -34,7 +34,32 @@
         );
 
         // Configuration for the Timeline
-        var options = {};
+        function customOrder(a, b) {
+            // order by date debut
+            if (a.start - b.start === 0) {
+                return b.end - a.end;
+            } else {
+                return a.start - b.start;
+            }
+        }
+
+        // option du timeline
+        var options = {
+            order: customOrder,
+            width: '100%',
+            margin: {
+                item: {
+                    horizontal: 0,
+                    vertical: 6
+                },
+                axis: 5
+            },
+            orientation: {
+                axis: 'both',
+                item: 'top'
+            }
+        };
+
 
         // Create a Timeline
         var timeline = new vis.Timeline(container, items, options);

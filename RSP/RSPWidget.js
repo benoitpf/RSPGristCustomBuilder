@@ -15,7 +15,7 @@ function buildTree(node, parentElement) {
         li.appendChild(span);
       }
     }
-  } else if (Array.isArray(node)) {
+  } else if (node !== null && Array.isArray(node)) {
     node.forEach((item, index) => {
       const li = document.createElement("li");
       li.textContent = `[${index}]`;

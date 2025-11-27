@@ -113,8 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch(url).then((response) => {
       if (response.ok) {
         response.json().then((data) => {
-                const results = data
-                if (!results) {
+                if (!data) {
                   console.info("pas de data");
                 }
                 else{

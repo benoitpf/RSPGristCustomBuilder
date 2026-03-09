@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://docs.getgrist.com/grist-plugin-api.js"></script>
+    <title>Agent</title>
+</head>
+    <body>
+        <table id="view">
+<!--            <tr>-->
+<!--                <td><label for="DEV" >Omogen dev</label></td>-->
+<!--                <td><input id="DEV"  type="text" size="100%" value="https://apim-portail-admin-demo.omogen.in.cloe.education.gouv.fr/portal/environments/DEFAULT/apis"/></td>-->
+<!--                <td><input id="DEVParams"  type="text" value="size=-1&category=rh"/></td>-->
+<!--                <td><button id="fetchDataApiDev">GET Data API Dev</button></td>-->
+<!--                <td><button id="fetchCategoriesDev">GET Categories</button></td>-->
+<!--            </tr>-->
+            <tr>
+                <td><label for="KLIF">Omogen klif RUA</label></td>
+                <td><input id="KLIF" type="text" size="100%" value="http://apim-passerelle-klifbb-otl.omogen.in.cloe.education.gouv.fr/mesirh/dev/rua/mes-qua-d3/v2/agents"/></td>
+                <td><input id="KLIFParams"  type="text"  value="numen=02E1403332QKG&dossierPrincipal=OUI"/></td>
+                <td><button id="fetchDataApiKlif">GET Data API Klif</button></td>
+            </tr>
+<!--            <tr>-->
+<!--                <td><label for="PROD">Omogen prod</label></td>-->
+<!--                <td><input id="PROD" type="text" size="100%" value="https://pr-apim.omogen.in.phm.education.gouv.fr/portal/environments/DEFAULT/apis"/></td>-->
+<!--                <td><input id="PRODParams"  type="text"  value="size=-1&category=rh-et-paie"/></td>-->
+<!--                <td><button id="fetchDataApiProd">GET Data API Prod</button></td>-->
+<!--                <td><button id="fetchCategoriesProd">GET Categories</button></td>-->
+<!--            </tr>-->
+            <tr><td colspan="5"><ul id="liste"></ul></td></tr>
+        </table>
+    <div id="status">RAS</div>
+    <label id="result"></label>
+    <script src="widget.js"></script>
+    </body>
+</html>

@@ -108,6 +108,9 @@ document.addEventListener('DOMContentLoaded', function() {
   
     let url = "https://apim-passerelle-klifbb-otl.omogen.in.cloe.education.gouv.fr/mesirh/dev/rsp/mes-qua-d1/api/externe/unite_structurelle_complet?identUs=";
     url += record.nom;
+    "https://pr-api.omogen.in.phm.education.gouv.fr/mesirh/rsp/api/externe/unite_structurelle_complet?identUs="
+    "https://apim-passerelle-klifbb-otl.omogen.in.cloe.education.gouv.fr/mesirh/dev/rsp/mes-qua-d1/api/externe/unite_structurelle_complet?identUs=";
+
   
   
     fetch(url).then((response) => {

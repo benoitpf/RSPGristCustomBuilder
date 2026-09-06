@@ -44,7 +44,7 @@ async function getapiinfo(url){
     try {
         const response = await fetch(url, {
             headers: {
-                'X-Omogen-Api-Key': 'e9e91e1e-1b02-4050-9b11-03e08148168a',
+                'X-Omogen-Api-Key': 'key',
                 'Accept': 'application/json'
             }
         });
